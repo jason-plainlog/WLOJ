@@ -1,28 +1,26 @@
 version: '3'
 
 services:
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-
-  judger:
-    image: judger
-    restart: always
-    command: python3 script.py
-    depends_on:
-      - mongo
-    volumes:
-      - ./judger/app:/app
-    
   server:
     image: server
     restart: always
-    command: gunicorn main:app
+    command: gunicorn -b 0.0.0.0:8000 main:app
     depends_on:
       - mongo
     volumes:
       - ./server/app:/app
     ports:
       - 8000:8000
+  
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+  
+  judger:
+    image: judger
+    restart: always
+    command: python3 script.py
+    volumes:
+      - ./judger/app:/app

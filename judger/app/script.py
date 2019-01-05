@@ -13,11 +13,13 @@ def mongoConnected():
     return True
 
 while not mongoConnected():
-    print("Can't connect to mongo, retry in 1 sec!")
+    print("Can't connect to MongoDB, retry in 1 sec!")
     time.sleep(1)
+print("Connected to MongoDB!")
 
-db = mongo['wloj']
+db = mongo['WLOJ']
 queue = db['queue']
 
 while not queue.count():
-    time.sleep(1)
+    print("No submission pending in queue, retry in 10 sec!")
+    time.sleep(10)
