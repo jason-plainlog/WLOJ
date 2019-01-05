@@ -20,5 +20,4 @@ db = mongo['wloj']
 queue = db['queue']
 
 while not queue.count():
-    print("No submission in queue now, recheck in 1 sec!")
     time.sleep(1)
