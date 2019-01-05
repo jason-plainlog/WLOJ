@@ -2,9 +2,11 @@ version: '3.2'
 
 services:
   server:
-    image: server
+    build: ./server
     depends_on:
       - mongo
+    volumes:
+      - ./server/app:/app
     ports:
       - 80:80
   
@@ -16,7 +18,7 @@ services:
       - ./db:/data/db
   
   judger:
-    image: judger
+    build: ./judger
     command: python3 script.py
     volumes:
       - ./judger/app:/app

@@ -6,4 +6,4 @@ db = DB()
 
 @app.route("/")
 def hello():
-    return "Hello?"
+    return "Hello, World!"
