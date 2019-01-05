@@ -3,7 +3,6 @@ version: '3.2'
 services:
   server:
     image: server
-    restart: always
     depends_on:
       - mongo
     ports:
@@ -11,7 +10,6 @@ services:
   
   mongo:
     image: mongo
-    restart: always
     ports:
       - 27017:27017
     volumes:
@@ -19,7 +17,6 @@ services:
   
   judger:
     image: judger
-    restart: always
     command: python3 script.py
     volumes:
       - ./judger/app:/app
