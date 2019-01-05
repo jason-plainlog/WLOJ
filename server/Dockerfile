@@ -1,7 +1,5 @@
-FROM alpine
+FROM tiangolo/uwsgi-nginx-flask:python3.7-alpine3.8
 
-RUN apk add python3
-RUN pip3 install --upgrade pip
-RUN pip install gunicorn flask pymongo
+COPY ./app /app
 
-WORKDIR /app
+RUN pip install pymongo

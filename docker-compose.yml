@@ -1,22 +1,21 @@
-version: '3'
+version: '3.2'
 
 services:
   server:
     image: server
     restart: always
-    command: gunicorn -b 0.0.0.0:8000 main:app
     depends_on:
       - mongo
-    volumes:
-      - ./server/app:/app
     ports:
-      - 8000:8000
+      - 80:80
   
   mongo:
     image: mongo
     restart: always
     ports:
       - 27017:27017
+    volumes:
+      - ./db:/data/db
   
   judger:
     image: judger
